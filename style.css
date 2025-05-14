@@ -1,0 +1,247 @@
+:root {
+    --primary-color: #6c63ff;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --background-color: #f9fafb;
+    --form-bg-color: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --label-color: #777;
+    --input-border: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-container {
+    background: var(--form-bg-color);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px var(--shadow-color);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-description {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--label-color);
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group {
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 15px 15px 15px 40px;
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: transparent;
+    z-index: 1;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+label {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--label-color);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: 0;
+    left: 15px;
+    font-size: 12px;
+    padding: 0 5px;
+    background-color: var(--form-bg-color);
+    color: var(--primary-color);
+    z-index: 2;
+}
+
+.icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--label-color);
+    z-index: 2;
+}
+
+.icon-valid {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--success-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--label-color);
+    cursor: pointer;
+    z-index: 3;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    min-height: 18px;
+    transition: all 0.3s ease;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+
+button:hover:not(:disabled) {
+    background-color: #5a52d5;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(108, 99, 255, 0.4);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #b3b3b3;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Valid and Invalid states */
+input.valid {
+    border-color: var(--success-color);
+    padding-right: 40px;
+}
+
+input.invalid {
+    border-color: var(--error-color);
+    padding-right: 40px;
+}
+
+input.valid ~ .icon-valid {
+    opacity: 1;
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 30px 20px;
+    }
+    
+    input {
+        padding: 12px 12px 12px 35px;
+        font-size: 14px;
+    }
+    
+    label {
+        left: 35px;
+        font-size: 14px;
+    }
+    
+    .icon {
+        left: 10px;
+    }
+    
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212;
+        --form-bg-color: rgba(30, 30, 30, 0.9);
+        --text-color: #f5f5f5;
+        --label-color: #aaa;
+        --input-border: #444;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    body {
+        background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    }
+    
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label {
+        background-color: var(--form-bg-color);
+    }
+}
